@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Latian from "@/component/Latian";
 import Head from "next/head";
 
@@ -21,7 +21,7 @@ const Navbar = () => {
             </li>
             <li>
               <a href="#" className="text-black">
-                kiw
+                Order
               </a>
             </li>
           </ul>
@@ -65,36 +65,47 @@ const iterasi = [
 ];
 
 const index = () => {
+  const [selectedCar, setSelectedCar] = useState("Blue");
+
+  useEffect(() => {
+    if (selectedCar != null) {
+      document.body.classList.add("bg-Blue");
+    } else {
+      document.body.classList.remove("bg-Blue");
+    }
+  }, [selectedCar]);
+
   return (
     <>
       {" "}
-      {/* <div className="flex justify-center items-center bg-white  p-8"> */}{" "}
-      {/* <Latian
-          gambar="https://asset.kompas.com/crops/kq3KHcF0jLhA7IgtkbfJRkTpzXE=/0x0:1920x1280/750x500/data/photo/2022/09/04/63144b9e73081.jpg"
-          pic="kosong"
-          tanah="rounded-lg"
-        /> */}
-      {/* </div> */}
       <Navbar />
-      <div className="container contents-center flex justify-center gap-56 flex-wrap p-5 ">
+      {/* <div style={{backgroundColor: '$(selectedCar', transition:'.3s ease', cursor:'pointer'}}>  */}
+      <div className="container contents-center flex justify-center gap-56 flex-wrap p-10 ">
         {iterasi.map((value, index) => {
+          const [selectedCar, setSelectedCar] = useState("Blue");
           return (
             <>
-
-              <div key={index} className="align-center p-3 border w-60 bg-white">
+              <div
+                key={index}
+                className="align-center p-10 border w-60 bg-white"
+                // onClick={() => setSelectedCar(index)}
+              >
                 <Latian
                   gambar={value.src}
                   pic={value.alt}
                   tanah="w-40 h-40 object-cover"
+                  // onClick = {()=> setSelectedCar(index)}
                 />
+
                 <div className="bottom-0 left-5 right-5 bg-opacity-50 p-5">
-                  <h1 className= '  text-black bg-white w-full'>{value.deskripsi}</h1>
+                  <h1 className="  text-black">{value.deskripsi}</h1>
                 </div>
               </div>
             </>
           );
         })}
       </div>
+      {/* </div> */}
     </>
   );
 };
