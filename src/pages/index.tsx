@@ -38,50 +38,51 @@ const iterasi = [
     alt: "red ferrari",
     deskripsi: "this is a red ferrari",
   },
-  // {
-  //   src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   alt: "lambo",
-  //   deskripsi: "its a Lambo",
-  // },
-  // {
-  //   src: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   alt: "amg",
-  //   deskripsi: "its an amg",
-  // },
-  // {
-  //   src: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   alt: "classy",
-  //   deskripsi: "classy never end",
-  // },
-  // {
-  //   src: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   alt: "classy",
-  //   deskripsi: "classy never end",
-  // },
-  // {
-  //   src: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   alt: "classy",
-  //   deskripsi: "classy never end",
-  // },
+  {
+    src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "lambo",
+    deskripsi: "its a Lambo",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "amg",
+    deskripsi: "its an amg",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "classy",
+    deskripsi: "classy never end",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "classy",
+    deskripsi: "classy never end",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "classy",
+    deskripsi: "classy never end",
+  },
 ];
 
-const amg = {
-  src: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  alt: "amg",
-  deskripsi: "its an amg",
-};
 
 const index = () => {
-  const [setCar, setSelectedCar] = useState(false);
-  const handleClick = () => {
-    setSelectedCar(!setCar);
-  };
 
-  const [setClick, setSelectedClick] = useState(false);
-  const handlePencet = () => {
-    setSelectedClick(!setClick);
-  };
+  const [containerColors, setContainerColors] = useState(['']);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
+  const handleClick = (imageIndex:any) => {
+    
+    const updatedColors = [...containerColors];
+    updatedColors[imageIndex] = updatedColors[imageIndex] === 'blue' ? 'grey' : 'blue';
+    setContainerColors(updatedColors);
+
+    console.log(updatedColors);
+    console.log(imageIndex);
+    console.log(containerColors);
+  };
+  
+ 
   return (
     <>
       {" "}
@@ -93,7 +94,6 @@ const index = () => {
               Welcome to our car collection. You can choose the car that you
               like by clicking on it.
             </h1>
-            {/* <p id="p1" className="container"></p> */}
           </div>
         </div>
       </div>
@@ -103,10 +103,8 @@ const index = () => {
             <>
               <div
                 key={index}
-                className={`${
-                  setCar ? "bg-red-400" : "bg-gray-400"
-                } align-center p-10 border w-60 bg-white flex flex-col`}
-                onClick={handleClick}
+                className={`${containerColors[index] === 'blue' ? 'bg-blue-500' : 'bg-gray-500'} align-center p-10 border w-60 bg-white flex flex-col`}
+                onClick={() => handleClick(index)}
               >
                 <Latian
                   gambar={value.src}
@@ -115,18 +113,6 @@ const index = () => {
                 />
                 <h1 className="bottom-0 left-5 right-5 bg-opacity-50 p-5  text-black">
                   {value.deskripsi}
-                </h1>
-              </div>
-
-              <div
-                className={`${
-                  setClick ? "bg-red-400" : "bg-gray-400"
-                } Container content-center border w-60 bg-white p-10 flex flex-col`}
-                onClick={handlePencet}
-              >
-                <img src={amg.src} alt={amg.deskripsi} />
-                <h1 className="bottom-0 left-5 right-5 bg-opacity-50 p-5  text-black">
-                  {amg.deskripsi} 
                 </h1>
               </div>
             </>

@@ -4,9 +4,9 @@ interface ILatian {
   gambar: string;
   pic: string;
   tanah?: string;
-  onClick?: ()=> void;
+  // onClick?: ()=> void;
 }
-const Latian = ({ gambar, pic, tanah, onClick }: ILatian) => {
+const Latian = ({ gambar, pic, tanah}: ILatian) => {
   return (
       <img
         src={gambar}
