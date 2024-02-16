@@ -68,14 +68,21 @@ const iterasi = [
 
 const index = () => {
 
-  const [containerColors, setContainerColors] = useState(['']);
+  const [containerColors, setContainerColors] = useState(
+    Array(iterasi.length).fill('blue')
+    );
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-  const handleClick = (imageIndex:any) => {
-    
+  const handleClick = (imageIndex:any) => { 
     const updatedColors = [...containerColors];
     updatedColors[imageIndex] = updatedColors[imageIndex] === 'blue' ? 'grey' : 'blue';
+
+    if(selectedImageIndex !== null && selectedImageIndex !== imageIndex){
+      updatedColors[selectedImageIndex] = 'blue';
+    }
+
     setContainerColors(updatedColors);
+    setSelectedImageIndex(imageIndex);
 
     console.log(updatedColors);
     console.log(imageIndex);
@@ -103,7 +110,7 @@ const index = () => {
             <>
               <div
                 key={index}
-                className={`${containerColors[index] === 'blue' ? 'bg-blue-500' : 'bg-gray-500'} align-center p-10 border w-60 bg-white flex flex-col`}
+                className={`${containerColors[index] === 'blue' ? 'bg-blue-500' : 'bg-gray-500'} align-center p-10 border w-60 bg-blue-500 flex flex-col`}
                 onClick={() => handleClick(index)}
               >
                 <Latian
